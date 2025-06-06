@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Nova Transação</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>Registrar Transação</h1>
+  <form action="/transacoes/registrar" method="post">
+    <label>Conta Origem:</label>
+    <input type="number" name="conta_origem_id" required>
+
+    <label>Conta Destino:</label>
+    <input type="number" name="conta_destino_id">
+
+    <label>Tipo:</label>
+    <select name="tipo_transacao">
+      <option value="DEPOSITO">Depósito</option>
+      <option value="SAQUE">Saque</option>
+      <option value="TRANSFERENCIA">Transferência</option>
+      <option value="PAGAMENTO">Pagamento</option>
+    </select>
+
+    <label>Valor:</label>
+    <input type="number" step="0.01" name="valor" required>
+
+    <label>Descrição:</label>
+    <input type="text" name="descricao">
+
+    <input type="submit" value="Registrar">
+  </form>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <title>Relatórios</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>Relatórios do Sistema</h1>
+  <p class="subtitulo">Selecione o tipo de relatório que deseja gerar:</p>
+
+  <form action="/relatorios/gerar" method="post">
+    <label>Tipo de Relatório:</label>
+    <select name="tipo_relatorio">
+      <option value="EXTRATO">Extrato</option>
+      <option value="ANÁLISE_FINANCEIRA">Análise Financeira</option>
+      <option value="TRANSACOES">Transações</option>
+    </select>
+
+    <label>Data Início:</label>
+    <input type="date" name="data_inicio" required>
+
+    <label>Data Fim:</label>
+    <input type="date" name="data_fim" required>
+
+    <input type="submit" value="Gerar Relatório">
+  </form>
+</body>
+</html>
