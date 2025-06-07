@@ -1,7 +1,5 @@
 package com.ucb.malvader.controller;
 
-public package com.ucb.malvader.controller;
-
 import com.ucb.malvader.model.Conta;
 import com.ucb.malvader.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +8,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -34,13 +31,11 @@ public class ContaController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         conta.setData_abertura(LocalDate.parse(request.getParameter("data_abertura"), formatter));
 
-        conta.setStatus(Conta.Status.valueOf(request.getParameter("status").toUpperCase()));
+        conta.setStatus(Conta.Status.valueOf(request.getParameter("status").toLowerCase()));
 
         contaRepository.save(conta);
 
         response.sendRedirect("/MenuFuncionario.html");
     }
 }
- {
-    
-}
+
