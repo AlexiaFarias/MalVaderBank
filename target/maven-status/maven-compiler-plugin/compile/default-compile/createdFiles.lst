@@ -1,10 +1,10 @@
 com\ucb\malvader\controller\TransacaoController.class
-com\ucb\malvader\controller\ContaController.class
 com\ucb\malvader\model\Funcionario$Cargo.class
 com\ucb\malvader\model\Relatorio$StatusRelatorio.class
 com\ucb\malvader\controller\RelatorioController.class
 com\ucb\malvader\model\Usuario.class
 com\ucb\malvader\repository\ContaRepository.class
+com\ucb\malvader\controller\UsuarioController.class
 com\ucb\malvader\controller\ClienteController.class
 com\ucb\malvader\model\Conta$Status.class
 com\ucb\malvader\MalvaderApplication.class
@@ -15,6 +15,7 @@ com\ucb\malvader\model\Transacao$TipoTransacao.class
 com\ucb\malvader\model\Transacao$StatusTransacao.class
 com\ucb\malvader\model\Cliente.class
 com\ucb\malvader\service\UsuarioService.class
+com\ucb\malvader\controller\LogoutController.class
 com\ucb\malvader\model\Conta.class
 com\ucb\malvader\model\Relatorio.class
 com\ucb\malvader\repository\ClienteRepository.class

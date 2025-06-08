@@ -1,6 +1,6 @@
 package com.ucb.malvader.controller;
 
-
+import com.ucb.malvader.model.Usuario;
 import com.ucb.malvader.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
@@ -22,32 +22,23 @@ public class LoginController {
     @PostMapping("/login")
     public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String cpf = request.getParameter("cpf");
-        String senha = request.getParameter("senha");
+        String senha = request.getParameter("senhaHash");
 
-        String senhaHash = md5(senha);
-
-        var usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senhaHash);
+        Optional<Usuario> usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senha);
 
         if (usuario.isPresent()) {
-            // Login bem-sucedido
-            response.sendRedirect("/MenuCliente.html");
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioLogado", usuario.get());
+
+            // 🔁 Redireciona com base no tipo
+            if (usuario.get().getTipo_usuario() == Usuario.TipoUsuario.FUNCIONARIO) {
+                response.sendRedirect("/MenuFuncionario.html");
+            } else {
+                response.sendRedirect("/MenuCliente.html");
+            }
         } else {
-            // Login falhou
             response.sendRedirect("/Login.html?erro=true");
         }
     }
-
-    private String md5(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("MD5");
-            byte[] messageDigest = md.digest(input.getBytes());
-            StringBuilder hexString = new StringBuilder();
-            for (byte b : messageDigest) {
-                hexString.append(String.format("%02x", b));
-            }
-            return hexString.toString();
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
 }
+

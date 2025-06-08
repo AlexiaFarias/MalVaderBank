@@ -2,7 +2,7 @@ C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvad
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\repository\RelatorioRepository.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\RelatorioController.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\TransacaoController.java
-C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\ContaController.java
+C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\UsuarioController.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\model\Conta.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\service\UsuarioService.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\LoginController.java
@@ -13,6 +13,7 @@ C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvad
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\repository\ContaRepository.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\model\Usuario.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\model\Relatorio.java
+C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\LogoutController.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\MalvaderApplication.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\repository\ClienteRepository.java
 C:\Users\pc\Desktop\Trabalho Malvaider\MalvaderBank\src\main\java\com\ucb\malvader\controller\ClienteController.java
