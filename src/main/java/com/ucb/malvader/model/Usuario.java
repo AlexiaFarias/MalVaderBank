@@ -28,11 +28,14 @@ public class Usuario {
     private TipoUsuario tipo_usuario;
 
     @Column(length = 32, nullable = false)
-    private String senha_hash;
+    private String senhaHash;
 
     private String otp_ativo;
-
     private Date otp_expiracao;
+
+    public enum TipoUsuario {
+        CLIENTE, FUNCIONARIO
+    }
 
     // Getters e Setters
 
@@ -84,12 +87,12 @@ public class Usuario {
         this.tipo_usuario = tipo_usuario;
     }
 
-    public String getSenha_hash() {
-        return senha_hash;
+    public String getSenhaHash() {
+        return senhaHash;
     }
 
-    public void setSenha_hash(String senha_hash) {
-        this.senha_hash = senha_hash;
+    public void setSenhaHash(String senhaHash) {
+        this.senhaHash = senhaHash;
     }
 
     public String getOtp_ativo() {
@@ -107,8 +110,5 @@ public class Usuario {
     public void setOtp_expiracao(Date otp_expiracao) {
         this.otp_expiracao = otp_expiracao;
     }
-
-    public enum TipoUsuario {
-        CLIENTE, FUNCIONARIO
-    }
 }
+
