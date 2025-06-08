@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <title>Cadastro de Conta</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <h1>Cadastro de Conta</h1>
+  <form action="/contas/cadastrar" method="post">
+    <label>Número da Conta:</label>
+    <input type="text" name="numero">
+
+    <label>ID do Cliente:</label>
+    <input type="number" name="id_cliente">
+
+    <label>ID da Agência:</label>
+    <input type="number" name="id_agencia">
+
+    <label>Saldo Inicial:</label>
+    <input type="number" step="0.01" name="saldo">
+
+    <label>Data de Abertura:</label>
+    <input type="date" name="data_abertura">
+
+    <label>Status:</label>
+    <select name="status">
+      <option value="ativa">Ativa</option>
+      <option value="inativa">Inativa</option>
+    </select>
+
+    <input type="submit" value="Cadastrar">
+  </form>
+</body>
+</html>
+
