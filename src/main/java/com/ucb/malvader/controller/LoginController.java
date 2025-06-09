@@ -19,26 +19,25 @@ public class LoginController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    @PostMapping("/login")
-    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String cpf = request.getParameter("cpf");
-        String senha = request.getParameter("senhaHash");
+  @PostMapping("/login")
+public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String cpf = request.getParameter("cpf");
+    String senha = request.getParameter("senhaHash");
 
-        Optional<Usuario> usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senha);
+    Optional<Usuario> usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senha);
 
-        if (usuario.isPresent()) {
-            HttpSession session = request.getSession();
-            session.setAttribute("usuarioLogado", usuario.get());
+    if (usuario.isPresent()) {
+        HttpSession session = request.getSession();
+        session.setAttribute("usuarioLogado", usuario.get());
 
-            // 🔁 Redireciona com base no tipo
-            if (usuario.get().getTipo_usuario() == Usuario.TipoUsuario.FUNCIONARIO) {
-                response.sendRedirect("/MenuFuncionario.html");
-            } else {
-                response.sendRedirect("/MenuCliente.html");
-            }
+        if (usuario.get().getTipo_usuario() == Usuario.TipoUsuario.FUNCIONARIO) {
+            response.sendRedirect("/MenuFuncionario.html");
         } else {
-            response.sendRedirect("/Login.html?erro=true");
+            response.sendRedirect("/MenuCliente.html");
         }
+    } else {
+        response.sendRedirect("/Login.html?erro=true");
     }
+}
 }
 
