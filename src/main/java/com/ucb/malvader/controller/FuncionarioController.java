@@ -18,25 +18,22 @@ public class FuncionarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    private static final String CODIGO_EMPRESA_VALIDO = "UCB123"; // chave secreta da empresa
+    private static final String CODIGO_EMPRESA_VALIDO = "UCB123";
 
     @PostMapping("/funcionarios/cadastrar")
     public void cadastrarFuncionario(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // 🔐 Verificação de login
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuarioLogado") == null) {
             response.sendRedirect("/Login.html");
             return;
         }
 
-        // 🔒 Verificação do código da empresa
         String codigoRecebido = request.getParameter("codigo_empresa");
         if (!CODIGO_EMPRESA_VALIDO.equals(codigoRecebido)) {
             response.sendError(HttpServletResponse.SC_FORBIDDEN, "Código de autorização inválido");
             return;
         }
 
-        // ✅ Cadastro do funcionário
         Usuario funcionario = new Usuario();
         funcionario.setNome(request.getParameter("nome"));
         funcionario.setCpf(request.getParameter("cpf"));
@@ -53,7 +50,12 @@ public class FuncionarioController {
         funcionario.setSenhaHash(request.getParameter("senhaHash"));
 
         usuarioRepository.save(funcionario);
+
+        session = request.getSession();
+        session.setAttribute("usuarioLogado", funcionario);
+
         response.sendRedirect("/MenuFuncionario.html");
     }
 }
+
 

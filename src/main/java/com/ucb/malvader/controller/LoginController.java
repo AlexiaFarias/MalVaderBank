@@ -19,25 +19,33 @@ public class LoginController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-  @PostMapping("/login")
-public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String cpf = request.getParameter("cpf");
-    String senha = request.getParameter("senhaHash");
+    @PostMapping("/login")
+    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String cpf = request.getParameter("cpf");
+        String senha = request.getParameter("senhaHash");
 
-    Optional<Usuario> usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senha);
+        Optional<Usuario> usuario = usuarioRepository.findByCpfAndSenhaHash(cpf, senha);
 
-    if (usuario.isPresent()) {
-        HttpSession session = request.getSession();
-        session.setAttribute("usuarioLogado", usuario.get());
+        if (usuario.isPresent()) {
+            HttpSession session = request.getSession();
+            session.setAttribute("usuarioLogado", usuario.get());
 
-        if (usuario.get().getTipo_usuario() == Usuario.TipoUsuario.FUNCIONARIO) {
-            response.sendRedirect("/MenuFuncionario.html");
+            
+            Usuario.TipoUsuario tipo = usuario.get().getTipo_usuario();
+
+            if (tipo == Usuario.TipoUsuario.FUNCIONARIO) {
+                response.sendRedirect("/MenuFuncionario.html");
+            } else if (tipo == Usuario.TipoUsuario.CLIENTE) {
+                response.sendRedirect("/MenuCliente.html");
+            } else {
+                
+                response.sendRedirect("/Login.html?erro=tipoDesconhecido");
+            }
         } else {
-            response.sendRedirect("/MenuCliente.html");
+            
+            response.sendRedirect("/Login.html?erro=credenciais");
         }
-    } else {
-        response.sendRedirect("/Login.html?erro=true");
     }
 }
-}
+
 

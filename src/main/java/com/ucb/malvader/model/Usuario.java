@@ -37,7 +37,7 @@ public class Usuario {
         CLIENTE, FUNCIONARIO
     }
 
-    // Getters e Setters
+  
 
     public Integer getId_usuario() {
         return id_usuario;

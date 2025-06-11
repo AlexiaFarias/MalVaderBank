@@ -20,7 +20,6 @@ public class UsuarioController {
 
     @PostMapping("/usuarios/cadastrar")
     public void cadastrarUsuario(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // 🔐 Verificação de login
         HttpSession session = request.getSession(false);
         if (session == null || session.getAttribute("usuarioLogado") == null) {
             response.sendRedirect("/Login.html");
@@ -45,7 +44,16 @@ public class UsuarioController {
 
         usuarioRepository.save(usuario);
 
-        response.sendRedirect("/cadastroUsuario.html");
+        session = request.getSession();
+        session.setAttribute("usuarioLogado", usuario);
+
+        if (usuario.getTipo_usuario() == Usuario.TipoUsuario.CLIENTE) {
+            response.sendRedirect("/MenuCliente.html");
+        } else if (usuario.getTipo_usuario() == Usuario.TipoUsuario.FUNCIONARIO) {
+            response.sendRedirect("/MenuFuncionario.html");
+        } else {
+            response.sendRedirect("/Login.html?erro=tipoDesconhecido");
+        }
     }
 }
 

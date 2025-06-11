@@ -10,12 +10,12 @@ public class Cliente {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_cliente;
 
-    @Column(nullable = false)
-    private Integer id_usuario;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_usuario", nullable = false)
+    private Usuario usuario;
 
     private Integer score_credito;
 
-    // Getters e Setters
 
     public Integer getId_cliente() {
         return id_cliente;
@@ -25,12 +25,12 @@ public class Cliente {
         this.id_cliente = id_cliente;
     }
 
-    public Integer getId_usuario() {
-        return id_usuario;
+    public Usuario getUsuario() {
+        return usuario;
     }
 
-    public void setId_usuario(Integer id_usuario) {
-        this.id_usuario = id_usuario;
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
     }
 
     public Integer getScore_credito() {
@@ -41,3 +41,4 @@ public class Cliente {
         this.score_credito = score_credito;
     }
 }
+
